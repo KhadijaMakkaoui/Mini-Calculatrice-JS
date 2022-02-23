@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini calculatrice</title>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="./bootsrap/bootstrap.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./bootsrap/bootstrap.min.css" />
+  </head>
+  <body>
+    <!-- style="height: 326px;width: 200px;" -->
+    <div class="d-flex justify-content-center ">
+    <div class="mt-5 row border h-100 " style="width: 300px;">
+        <div class="bg-dark text-end ">
+            <input type="text" class="w-100 text-light form-control" readonly name="" id="" style="background-color: unset;border: unset;">
+        </div>
+
+        <div class="col-9">
+           
+            <div class="row" id="first-row">
+            <input type="button" value="C" class=" btn-light col-6 border">
+            <input type="button" value=" &larr;" class="btn-light col-6 border">
+               
+            </input>
+            </div>
+            <div class="row" id="numbers">
+            <input type="button" value="9" class="bg-transparent col-4 border">
+            <input type="button" value="8" class="bg-transparent col-4 border">
+            <input type="button" value="7" class="bg-transparent col-4 border">
+            <input type="button" value="6" class="bg-transparent col-4 border">
+            <input type="button" value="5" class="bg-transparent col-4 border">
+            <input type="button" value="4" class="bg-transparent col-4 border">
+            <input type="button" value="3" class="bg-transparent col-4 border">
+            <input type="button" value="2" class="bg-transparent col-4 border">
+            <input type="button" value="1" class="bg-transparent col-4 border">
+            <input type="button" value="0" class="bg-transparent col-8 border">
+            <input type="button" value="." class="btn-light col-4 border">
+           
+
+            <!-- <input type="text" name="output" id=""> -->
+            </div>
+        </div>
+        
+            <div class=" col-3" id="operation-signs">
+                <input type="button" value="/" class="btn-light col-12 border text-white" style="background-color: #CD7DF5;">
+                <input type="button" value="*" class="btn-light col-12 border text-white" style="background-color: #CD7DF5;">
+                <input type="button" value="-" class="btn-light col-12 border text-white"  style="background-color: #CD7DF5;">
+                <input type="button" value="+" class="btn-light col-12 border text-white"  style="background-color: #CD7DF5;">
+            <input type="button" value="=" class="col-12 border text-white" style="background-color: #FF44EC;">
+
+            </div>
+       
+    </div>
     
-</body>
+    </div>
+</div>
+  </body>
 </html>
