@@ -12,7 +12,8 @@ function multiple(nb1, nb2) {
 
 function divise(nb1, nb2) {
     if (nb2 == 0) {
-        return "Désoler...la division sur 0 zéro ne peut pas être éffectué ";
+        alert("Désoler...la division sur 0 zéro ne peut pas être éffectué ");
+        return "";
     }
     return nb1 / nb2;
 }
@@ -20,13 +21,14 @@ isfloat = false;
 let result = 0;
 let current = document.getElementById("input_Affichage");
 let previous = document.getElementById("result");
+let first_op, second_op, i = 0,
+    j = 1;
 let operateur;
 
 function operate(op) {
-    // alert(typeof(parseFloat(current.value)));
-    n1 = parseFloat(current.value);
-    n2 = parseFloat(previous.value);
-    // let op = operateur;
+    n2 = parseFloat(current.value);
+    n1 = parseFloat(previous.value);
+
 
     if (isNaN(n1) || isNaN(n2))
         return
@@ -42,21 +44,18 @@ function operate(op) {
             result = multiple(n1, n2);
             break;
         case "/":
-            result = division(n1, n2);
-            break;
-        default:
-            result = 0;
+            result = divise(n1, n2);
             break;
     }
-    // return result;
+
 }
 
 
 function OperationChoix(op) {
-    if (current.value === "") {
+    if (current.value == "") {
         return;
     }
-    if (previous.value !== "") {
+    if (previous.value != "") {
         operate(op)
         previous.value = result;
 
@@ -72,7 +71,7 @@ function OperationChoix(op) {
 function afficher(clicked_value) {
 
     document.getElementById("input_Affichage").value += clicked_value;
-    return clicked_value;
+    // return clicked_value;
     // operate()
     // if (clicked_value == ".") {
     //     // if (output.value == " ") {
