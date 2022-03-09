@@ -17,7 +17,7 @@ function divise(nb1, nb2) {
     }
     return nb1 / nb2;
 }
-isfloat = false;
+// isfloat = false;
 let result = 0;
 let current = document.getElementById("input_Affichage");
 let previous = document.getElementById("result");
@@ -48,22 +48,37 @@ function operate(op) {
         case "/":
             result = divise(n1, n2);
             break;
+        case "/":
+            result = divise(n1, n2);
+            break;
+
+        default:
+            previous.value += current.value + "" + op + result;
+            // result = 0;
+            break;
     }
 
 }
 
+function Negative() {
+    current.value = current.value * (-1);
+}
 
 function OperationChoix(op) {
     if (current.value == "") {
         return;
     }
-    if (previous.value != "") {
+    if (previous.value != "")
         operate(op)
-        previous.value = result;
+        // previous.value = ;
 
-    } else
-        previous.value = current.value;
-
+    // } else
+    // if (op != "=")
+    if (op != "=")
+        previous.value += current.value + "" + op;
+    else {
+        operate(op);
+    }
     current.value = "";
     pointbtn.removeAttribute("disabled");
 }
@@ -74,6 +89,8 @@ function OperationChoix(op) {
 function afficher(clicked_value) {
     if (current.value.includes("."))
         pointbtn.setAttribute("disabled", "true");
+    else
+        pointbtn.removeAttribute("disabled");
 
     current.value += clicked_value;
 }
