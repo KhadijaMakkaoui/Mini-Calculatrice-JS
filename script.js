@@ -17,18 +17,23 @@ function divise(nb1, nb2) {
     return nb1 / nb2;
 }
 isfloat = false;
-current = document.getElementById("input_Affichage");
-previous = document.getElementById("result");
+let result = 0;
+let current = document.getElementById("input_Affichage");
+let previous = document.getElementById("result");
+let operateur;
 
-// console.log(add(2,1));
-function operate(operateur, p, c) {
-    let n1 = parseFloat(p);
-    let n2 = parseFloat(c);
+function operate(op) {
+    // alert(typeof(parseFloat(current.value)));
+    n1 = parseFloat(current.value);
+    n2 = parseFloat(previous.value);
+    // let op = operateur;
 
-    switch (operateur) {
+    if (isNaN(n1) || isNaN(n2))
+        return
+
+    switch (op) {
         case "+":
             result = add(n1, n2);
-
             break;
         case "-":
             result = soustract(n1, n2);
@@ -43,22 +48,23 @@ function operate(operateur, p, c) {
             result = 0;
             break;
     }
-    return parseFloat(result);
+    // return result;
 }
 
-function OperationChoix(operateur) {
-    valPrev = previous.value;
-    // valPrev = previous.value;
 
-    if (!previous.value) {
-
-        previous.value = current.value + operateur;
-    } else {
-        previous.value = operate(operateur, valResult, current) + operateur;
+function OperationChoix(op) {
+    if (current.value === "") {
+        return;
     }
-    current.value = " ";
+    if (previous.value !== "") {
+        operate(op)
+        previous.value = result;
+
+    } else
+        previous.value = current.value;
+
+    current.value = "";
 }
-// previous.value = operate(operateur, previous, current);
 
 
 
@@ -88,8 +94,9 @@ function afficher(clicked_value) {
 function ClearAll() {
     // isfloat = false;
     // alert("Please select");
-    current.value = " ";
-    previous.value = " ";
+    current.value = "";
+    previous.value = "";
+    result = 0;
 }
 
 function backspace() {
