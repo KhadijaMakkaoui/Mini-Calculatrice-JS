@@ -21,6 +21,8 @@ isfloat = false;
 let result = 0;
 let current = document.getElementById("input_Affichage");
 let previous = document.getElementById("result");
+let pointbtn = document.getElementById("point");
+
 let first_op, second_op, i = 0,
     j = 1;
 let operateur;
@@ -63,36 +65,21 @@ function OperationChoix(op) {
         previous.value = current.value;
 
     current.value = "";
+    pointbtn.removeAttribute("disabled");
 }
 
 
 
 //Affichage 
 function afficher(clicked_value) {
+    if (current.value.includes("."))
+        pointbtn.setAttribute("disabled", "true");
 
-    document.getElementById("input_Affichage").value += clicked_value;
-    // return clicked_value;
-    // operate()
-    // if (clicked_value == ".") {
-    //     // if (output.value == " ") {
-    //     //     output.value += 0;
-    //     // }
-    //     output.value += clicked_value;
-    //     isfloat = true;
-    // } else {
-    //     if (isfloat) {
-    //         document.getElementById("point").disabled = true;
-    //         output.value += clicked_value;
-    //     } else {
-    //         // document.getElementById("point").disabled=false;
-    //         output.value += clicked_value;
-    //     }
-    // }
+    current.value += clicked_value;
 }
 //Supprimer tous
 function ClearAll() {
     // isfloat = false;
-    // alert("Please select");
     current.value = "";
     previous.value = "";
     result = 0;
