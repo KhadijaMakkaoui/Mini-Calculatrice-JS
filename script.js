@@ -17,20 +17,24 @@ function divise(nb1, nb2) {
     }
     return nb1 / nb2;
 }
-// isfloat = false;
 let result = 0;
 let current = document.getElementById("input_Affichage");
 let previous = document.getElementById("result");
 let pointbtn = document.getElementById("point");
-
+let disCurrent, disPrevious;
 let first_op, second_op, i = 0,
     j = 1;
+let nb_entrer = 0;
 let operateur;
+let equals;
 
 function operate(op) {
     n2 = parseFloat(current.value);
-    n1 = parseFloat(previous.value);
 
+    if (previous.value != "")
+        n1 = parseFloat(previous.value);
+    else
+        n1 = parseFloat(result);
 
     if (isNaN(n1) || isNaN(n2))
         return
@@ -48,14 +52,8 @@ function operate(op) {
         case "/":
             result = divise(n1, n2);
             break;
-        case "/":
-            result = divise(n1, n2);
-            break;
 
-        default:
-            previous.value += current.value + "" + op + result;
-            // result = 0;
-            break;
+
     }
 
 }
@@ -65,21 +63,25 @@ function Negative() {
 }
 
 function OperationChoix(op) {
+
     if (current.value == "") {
         return;
     }
     if (previous.value != "")
         operate(op)
-        // previous.value = ;
 
-    // } else
-    // if (op != "=")
-    if (op != "=")
+    if (equals) {
+        previous.value = "";
+    }
+    if (op != "=") {
         previous.value += current.value + "" + op;
-    else {
-        operate(op);
+        equals = false;
+    } else {
+        previous.value += current.value + "" + op + result;
+        equals = true;
     }
     current.value = "";
+
     pointbtn.removeAttribute("disabled");
 }
 
