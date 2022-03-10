@@ -52,8 +52,6 @@ function operate(op) {
         case "/":
             result = divise(n1, n2);
             break;
-
-
     }
 
 }
