@@ -124,3 +124,7 @@ function ClearAll() {
 function backspace() {
     current.value = current.value.slice(0, -1);
 }
+const numbers = document.querySelectorAll(".numbers")
+numbers.forEach(button => {
+    button.addEventListener("click", (e) => afficher(button.value))
+});
