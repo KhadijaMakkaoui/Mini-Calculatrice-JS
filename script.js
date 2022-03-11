@@ -107,10 +107,13 @@ function afficher(clicked_value) {
 
     current.value += clicked_value;
 }
+const btnSigne = document.getElementById("signe");
 //multiplier par -1 pour rendre un nombre negatif
-function Negative() {
+btnSigne.addEventListener("click", function Negative() {
     current.value = current.value * (-1);
-}
+})
+
+
 //Supprimer tous
 function ClearAll() {
     // isfloat = false;
