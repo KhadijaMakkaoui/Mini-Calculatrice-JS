@@ -110,23 +110,25 @@ function afficher(clicked_value) {
 const btnSigne = document.getElementById("signe");
 //multiplier par -1 pour rendre un nombre negatif
 btnSigne.addEventListener("click", function Negative() {
-    current.value = current.value * (-1);
-})
-
-
-//Supprimer tous
-function ClearAll() {
+        current.value = current.value * (-1);
+    })
+    //Supprimer tous
+const btnCA = document.getElementById("clearall");
+btnCA.addEventListener("click", function ClearAll() {
     // isfloat = false;
     current.value = "";
     previous.value = "";
     result = 0;
     arOperator = [];
     document.querySelector("h4").innerHTML = "";
-}
+})
 
-function backspace() {
+const btnBackSp = document.getElementById("backspace");
+btnBackSp.addEventListener("click", function backspace() {
     current.value = current.value.slice(0, -1);
-}
+})
+
+
 const numbers = document.querySelectorAll(".numbers")
 numbers.forEach(button => {
     button.addEventListener("click", (e) => afficher(button.value))

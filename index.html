@@ -15,18 +15,18 @@
     <div class="d-flex justify-content-center">
         <div class="mt-5 row border h-100 " style="width: 300px;">
             <div class="bg-dark text-end">
-                <input type="text" value="" readonly class="w-100 text-light form-control " id="result" style="background-color: unset;border: unset; ">
+                <input type="text" disabled value="" class="w-100 text-light form-control " id="result" style="background-color: unset;border: unset; ">
                 <h4 class="w-100 text-light form-control " style="background-color: unset;border: unset; "></h4>
             </div>
 
             <div class="bg-dark text-end ">
-                <input type="text" value="" placeholder="0" class="w-100 text-light form-control" id="input_Affichage" style="background-color: unset;border: unset;">
+                <input type="text" value="" disabled placeholder="0" class="w-100 text-light form-control" id="input_Affichage" style="background-color: unset;border: unset;">
             </div>
 
             <div class="col-9">
                 <div class="row" id="first-row">
-                    <input type="button" value="C" onclick="ClearAll();" class="col-6 border">
-                    <input type="button" value="&larr;" onclick="backspace();" class="col-6 border">
+                    <input type="button" id="clearall" value="C" class="col-6 border">
+                    <input type="button" id="backspace" value="&larr;" class="col-6 border">
                 </div>
                 <div class="row" id="numbers">
                     <input type="button" value="9" class="bg-transparent col-4 border numbers">
