@@ -4,13 +4,15 @@ let result = 0,
 const current = document.getElementById("input_Affichage");
 const previous = document.getElementById("result");
 const pointbtn = document.getElementById("point");
-const btnSigne = document.getElementById("signe");
+const btnSigneNegative = document.getElementById("signe");
 const btnBackSp = document.getElementById("backspace");
 const btnCA = document.getElementById("clearall");
+const operateSignes = document.querySelectorAll(".operateSigne");
+const numbers = document.querySelectorAll(".numbers")
+
 let i = 0,
-    countOp = 0;
-let operateur;
-let equals;
+    countOp = 0,
+    operateur, equals;
 let n1 = 0,
     n2 = 0;
 //tableau des operateurs de l'operation
@@ -37,19 +39,8 @@ function divise(nb1, nb2) {
 }
 
 function operate(op) {
-
     n2 = parseFloat(current.value);
     n1 = parseFloat(res2);
-    // if (countOp == 0) {
-    //     n1 = parseFloat(previous.value);
-
-    //     countOp++
-    //     return
-    // } else
-    // countOp++
-    // if (isNaN(n1) || isNaN(n2) || n1 || isNaN(n2))
-    //     return
-    // if (n1 != 0 || n2 != 0)
     switch (op) {
         case "+":
             result = add(n1, n2);
@@ -84,11 +75,12 @@ function OperationChoix(op) {
     arOperator[i] = op;
     //Effectuer l'operation à l'aide du premier operateur entrer
     operate(arOperator[i - 1])
-
+        //tester si l y'a deja un resultat sinon le premier operateur va etre current.value
     if (res2 == 0) {
         res2 = current.value;
     } else
         res2 = result;
+    //affichage du resultat
     document.querySelector("h4").innerHTML = result;
     i++;
     //tester si l'utilisateur a cliquer sur egal
@@ -103,7 +95,7 @@ function OperationChoix(op) {
 }
 
 //multiplier par -1 pour rendre un nombre negatif
-btnSigne.addEventListener("click", function Negative() {
+btnSigneNegative.addEventListener("click", function Negative() {
     current.value = current.value * (-1);
 })
 
@@ -118,26 +110,54 @@ btnCA.addEventListener("click", function ClearAll() {
 
 //Backspace
 btnBackSp.addEventListener("click", function backspace() {
-    current.value = current.value.slice(0, -1);
-})
-const numbers = document.querySelectorAll(".numbers")
-numbers.forEach(button => {
-    button.addEventListener("click", (e) => afficher(button.value))
-});
-
+        current.value = current.value.slice(0, -1);
+    })
+    //affichage
 function afficher(clicked_value) {
 
     if (current.value.includes("."))
         pointbtn.setAttribute("disabled", "true");
     else
         pointbtn.removeAttribute("disabled");
+    //Traiter le cas de vergule sans valeur precedante
     if (current.value == "" && clicked_value == ".")
         current.value += "0" + clicked_value;
     else
         current.value += clicked_value;
 }
-const operateSignes = document.querySelectorAll(".operateSigne");
+numbers.forEach(button => {
+    button.addEventListener("click", (e) => afficher(button.value))
+});
+//Apres clicker sur un signe d'operation
 operateSignes.forEach(button => {
-    button.addEventListener("click", (e) => OperationChoix(button.value))
+        button.addEventListener("click", (e) => OperationChoix(button.value))
 
-})
+    })
+    //manipuler les valeurs enter par clavier
+window.addEventListener("keyup", (e) => {
+        //manipulation des nombre
+        if (e.key == '0' || e.key == '1' || e.key == '2' || e.key == '3' || e.key == '4' || e.key == '5' || e.key == '6' || e.key == '7' ||
+            e.key == '8' || e.key == '9' || e.key == '.') {
+            clickBtnNumber(e.key);
+        }
+        //manipulation des signe d'operations
+        if (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/' || e.key == '=')
+            clickBtnOperator(e.key);
+
+    })
+    //Effectuer le click si l'utilisateur click sur un nombre 
+function clickBtnNumber(key) {
+    numbers.forEach(btn => {
+        if (btn.value == key)
+            btn.click();
+
+    })
+}
+//Effectuer le click si l'utilisateur click sur un operant 
+
+function clickBtnOperator(key) {
+    operateSignes.forEach(btn => {
+        if (btn.value == key)
+            btn.click();
+    })
+}
